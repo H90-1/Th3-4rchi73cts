@@ -3,252 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Flux</title>
+    <title>Th3 4rchi73cts</title>
+    <!-- Use a monospaced font for the console theme -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons for a modern look -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
     <style>
-        :root {
-            --neon-green: #00ff00;
-            --dark-bg: #0a0a0a;
-            --medium-bg: #1a1a1a;
-            --border-color: #333;
-        }
-
         body {
             font-family: 'Fira Code', monospace;
-            background-color: var(--dark-bg);
-            color: var(--neon-green);
-        }
-
-        .section-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 4rem 1rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .glitch-text {
-            animation: glitch 1s linear infinite;
-        }
-
-        @keyframes glitch {
-            0% {
-                text-shadow: 2px 2px var(--neon-green), -2px -2px #ff00ff;
-                transform: translate(0);
-            }
-            25% {
-                text-shadow: -2px -2px var(--neon-green), 2px 2px #ff00ff;
-                transform: translate(0);
-            }
-            50% {
-                text-shadow: 2px -2px var(--neon-green), -2px 2px #ff00ff;
-                transform: translate(0);
-            }
-            75% {
-                text-shadow: -2px 2px var(--neon-green), 2px -2px #ff00ff;
-                transform: translate(0);
-            }
-            100% {
-                text-shadow: 2px 2px var(--neon-green), -2px -2px #ff00ff;
-                transform: translate(0);
-            }
+            background-color: #050505; /* Deep black */
+            color: #E0E0E0; /* Soft gray text */
+            overflow-x: hidden;
         }
         
-        .animated-gradient {
-            background-size: 400% 400%;
-            animation: gradient-animation 10s ease infinite;
-        }
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* The main green color for the theme */
+        .color-green { color: #00FF00; }
+        .bg-green { background-color: #00FF00; }
+        .border-green { border-color: #00FF00; }
 
-        .terminal-prompt::before {
-            content: '$ ';
-            color: var(--neon-green);
-        }
-
-        /* Smooth scroll effect for links */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Responsive styling for the main content area */
-        .content-area {
-            max-width: 900px;
-            width: 100%;
-        }
-
-        /* Custom scrollbar for a more thematic look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
+            width: 8px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--neon-green);
-            border-radius: 5px;
-            border: 2px solid var(--dark-bg);
+            background: #00FF00;
+            border-radius: 4px;
+        }
+        
+        /* Keyframe animations for typing and blinking cursor effects */
+        .typing-animation {
+            overflow: hidden; /* Hide the content until typed */
+            white-space: nowrap; /* Prevent line breaks */
+            width: 0; /* Start with no width */
+            animation: typing 2.5s steps(25, end) forwards;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00cc00;
+        .blink-caret {
+            animation: blink-caret .75s step-end infinite;
         }
 
-        /* Custom selection color */
-        ::selection {
-            background: rgba(0, 255, 0, 0.5);
-            color: var(--dark-bg);
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
         }
 
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00FF00; }
+        }
+
+        /* Animation for the skill bars to 'fill up' */
+        .skill-bar-inner {
+            width: 0;
+            transition: width 1s ease-in-out;
+            transition-delay: 0.5s;
+        }
+
+        /* A subtle animation for the background grid */
+        @keyframes moving-grid {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100px 100px;
+            }
+        }
+        .animated-background {
+            background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: moving-grid 120s linear infinite;
+        }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="animated-background">
 
-    <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 p-4 bg-transparent backdrop-blur-sm">
-        <nav class="flex justify-center md:justify-end space-x-4 md:space-x-8">
-            <a href="#about" class="text-neon-green text-sm md:text-base hover:text-white transition-colors duration-300">About</a>
-            <a href="#competitions" class="text-neon-green text-sm md:text-base hover:text-white transition-colors duration-300">Competitions</a>
-            <a href="#writeups" class="text-neon-green text-sm md:text-base hover:text-white transition-colors duration-300">Writeups</a>
-            <a href="#contact" class="text-neon-green text-sm md:text-base hover:text-white transition-colors duration-300">Contact</a>
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-sm shadow-md py-4">
+        <nav class="container mx-auto flex justify-center space-x-4 md:space-x-8">
+            <a href="#about" class="nav-button">
+                <i class="ph-duotone ph-info text-2xl"></i> About
+            </a>
+            <a href="#team" class="nav-button">
+                <i class="ph-duotone ph-users text-2xl"></i> Team
+            </a>
+            <a href="#competitions" class="nav-button">
+                <i class="ph-duotone ph-trophy text-2xl"></i> Competitions
+            </a>
+            <a href="#writeups" class="nav-button">
+                <i class="ph-duotone ph-file-code text-2xl"></i> Writeups
+            </a>
+            <a href="#stats" class="nav-button">
+                <i class="ph-duotone ph-chart-line text-2xl"></i> Stats
+            </a>
         </nav>
     </header>
 
-    <!-- Main Hero Section -->
-    <section id="hero" class="section-container bg-medium-bg">
-        <div class="content-area text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 glitch-text">
-                <span class="text-white">Quantum Flux</span>
-            </h1>
-            <p class="text-lg md:text-xl text-white opacity-80 mb-8">
-                _A hub for digital artifacts and cyber explorations_
-            </p>
-            <p class="terminal-prompt text-sm md:text-base text-neon-green">
-                Initializing core protocols... Connection established. Welcome, user.
-            </p>
-        </div>
-    </section>
+    <!-- Main Container -->
+    <div class="container mx-auto p-4 md:p-8 pt-24">
 
-    <!-- About Section -->
-    <section id="about" class="section-container bg-dark-bg">
-        <div class="content-area p-8 rounded-xl border border-border-color shadow-2xl shadow-green-900/50">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">_About</h2>
-            <p class="text-white opacity-80 leading-relaxed text-sm md:text-base">
-                Welcome to my digital repository. This space is a log of my journey through cybersecurity,
-                penetration testing, and the art of ethical hacking. Here, you will find information about me,
-                my skills, and a collection of my work. The goal is to document and share knowledge
-                within the community, fostering a culture of continuous learning and collaboration.
-            </p>
-        </div>
-    </section>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center">
+            <div>
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold color-green typing-animation pr-2 border-r-4 border-green blink-caret">
+                    $ Th3 4rchi73cts
+                </h1>
+                <p class="mt-4 text-sm md:text-lg text-slate-400">
+                    root@morocco:~# Building digital fortresses, one byte at a time.
+                </p>
+            </div>
+        </section>
 
-    <!-- Competitions Section -->
-    <section id="competitions" class="section-container bg-medium-bg">
-        <div class="content-area p-8 rounded-xl border border-border-color shadow-2xl shadow-green-900/50">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">_Competitions</h2>
-            <div class="grid md:grid-cols-2 gap-8 text-white opacity-80">
-                <div class="p-6 bg-dark-bg rounded-lg border border-border-color">
-                    <h3 class="text-xl font-semibold mb-2 text-neon-green">CTF Season 2024</h3>
-                    <p class="text-sm md:text-base">
-                        A collection of challenges from various Capture The Flag events. I participated in over 10 CTFs this season,
-                        focusing on binary exploitation and reverse engineering.
-                    </p>
+        <!-- About Section -->
+        <section id="about" class="my-24">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+                    <i class="ph-duotone ph-info-circle text-3xl mr-2"></i> About Us
+                </h2>
+                <p class="text-lg text-slate-300">
+                    Based in Morocco, Th3 4rchi73cts is a dedicated two-player team specializing in the art of cybersecurity. We approach every challenge with precision and creativity, seeing vulnerabilities not as flaws, but as opportunities to architect stronger, more resilient systems. Our expertise spans from penetrating web applications to dissecting complex binaries, ensuring a comprehensive defense strategy.
+                </p>
+            </div>
+        </section>
+
+        <!-- Team Members Section -->
+        <section id="team" class="my-24">
+            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-10 color-green flex items-center justify-center">
+                <i class="ph-duotone ph-users text-3xl mr-2"></i> Our Experts
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- h1_w3rm Card -->
+                <div class="card">
+                    <div class="p-4 rounded-full border border-green/50 mb-4 shadow-inner-glow">
+                        <i class="ph-duotone ph-spider text-4xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-400">h1_w3rm</h3>
+                    <p class="text-slate-400 mb-6">Master of Exploitation & Disassembly</p>
+
+                    <!-- Skills Bar Container -->
+                    <div class="w-full space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div id="skill-web-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-wrench text-xl text-slate-400"></i>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div id="skill-re-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="90"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Reverse Engineering</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-6 bg-dark-bg rounded-lg border border-border-color">
-                    <h3 class="text-xl font-semibold mb-2 text-neon-green">Hack The Box</h3>
-                    <p class="text-sm md:text-base">
-                        Detailed log of my journey on Hack The Box, covering retired machines, Pro Labs, and community challenges.
-                        Focus areas: web application security and privilege escalation.
-                    </p>
+
+                <!-- dracua Card -->
+                <div class="card">
+                    <div class="p-4 rounded-full border border-green/50 mb-4 shadow-inner-glow">
+                        <i class="ph-duotone ph-magnifying-glass text-4xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-green-400">dracula</h3>
+                    <p class="text-slate-400 mb-6">Forensic Specialist & Web Hacker</p>
+
+                    <!-- Skills Bar Container -->
+                    <div class="w-full space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div id="skill-web-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-hard-drive text-xl text-slate-400"></i>
+                            <div class="w-full bg-slate-800 rounded-full h-2">
+                                <div id="skill-forensics-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="85"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Forensics</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Writeups Section -->
-    <section id="writeups" class="section-container bg-dark-bg">
-        <div class="content-area p-8 rounded-xl border border-border-color shadow-2xl shadow-green-900/50">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">_Writeups</h2>
-            <ul class="space-y-4 text-white opacity-80">
-                <li class="p-4 bg-medium-bg rounded-lg border border-border-color hover:bg-green-900/10 transition-colors duration-300 cursor-pointer">
-                    <h3 class="text-xl font-semibold text-neon-green">Hack The Box: "Authme" Machine</h3>
-                    <p class="text-sm md:text-base">
-                        A deep dive into the "Authme" machine, from initial enumeration to root-level compromise.
-                    </p>
-                </li>
-                <li class="p-4 bg-medium-bg rounded-lg border border-border-color hover:bg-green-900/10 transition-colors duration-300 cursor-pointer">
-                    <h3 class="text-xl font-semibold text-neon-green">Binary Exploitation: Stack Overflow</h3>
-                    <p class="text-sm md:text-base">
-                        A walkthrough of a classic stack buffer overflow vulnerability, including shellcode injection.
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-container bg-medium-bg">
-        <div class="content-area p-8 rounded-xl border border-border-color shadow-2xl shadow-green-900/50">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">_Contact</h2>
-            <p class="text-white opacity-80 text-center mb-4">
-                <span class="terminal-prompt"></span>
-                <span class="text-sm md:text-base">Contact me if you want to collaborate, have a question, or just want to connect.</span>
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#" class="text-neon-green hover:text-white transition-colors duration-300 text-sm md:text-base">GitHub</a>
-                <a href="#" class="text-neon-green hover:text-white transition-colors duration-300 text-sm md:text-base">LinkedIn</a>
-                <a href="#" class="text-neon-green hover:text-white transition-colors duration-300 text-sm md:text-base">Email</a>
+        <!-- Placeholder Sections -->
+        <section id="competitions" class="my-24">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+                    <i class="ph-duotone ph-trophy text-3xl mr-2"></i> Competitions
+                </h2>
+                <p class="text-lg text-slate-400">
+                    This section will be updated with our team's past and upcoming competitions.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-8 text-sm text-gray-500 border-t border-border-color">
-        <p>_&copy; 2025 Quantum Flux. All Rights Reserved._</p>
-    </footer>
+        <section id="writeups" class="my-24">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+                    <i class="ph-duotone ph-file-code text-3xl mr-2"></i> Writeups
+                </h2>
+                <p class="text-lg text-slate-400">
+                    Check back here for our detailed writeups on challenges and vulnerabilities we've solved.
+                </p>
+            </div>
+        </section>
+
+        <section id="stats" class="my-24">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+                    <i class="ph-duotone ph-chart-line text-3xl mr-2"></i> Stats
+                </h2>
+                <p class="text-lg text-slate-400">
+                    Our performance metrics and rankings will be displayed here.
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="my-24">
+            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8 color-green">Contact Us</h2>
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm max-w-lg mx-auto">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-slate-300 font-medium mb-1">Your Name</label>
+                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-slate-300 font-medium mb-1">Your Email</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-slate-300 font-medium mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400"></textarea>
+                    </div>
+                    <button type="submit" class="button-glow w-full px-6 py-3 bg-green text-black font-bold rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black">
+                        Send Message
+                    </button>
+                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-slate-600">
+            <p>&copy; 2024 Th3 4rchi73cts. All Rights Reserved.</p>
+            <p class="mt-2">Based in Morocco</p>
+        </footer>
+
+    </div>
+
+    <style>
+        .nav-button {
+            @apply flex items-center space-x-1 px-4 py-2 rounded-lg text-slate-400 font-semibold transition-all duration-300 transform hover:scale-110 hover:text-green-400 hover:shadow-lg;
+            border: 1px solid transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+        }
+        .card {
+            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+        }
+        .shadow-inner-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .button-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .button-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5);
+        }
+    </style>
 
     <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        window.onload = () => {
+            // Function to animate the skill bars
+            const animateSkillBars = () => {
+                const skillBars = document.querySelectorAll('.skill-bar-inner');
+                skillBars.forEach(bar => {
+                    const skillLevel = bar.dataset.skill;
+                    bar.style.width = `${skillLevel}%`;
                 });
+            };
+
+            // Animate the bars when the page loads
+            animateSkillBars();
+
+            // Handle contact form submission
+            const form = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+                formMessage.classList.add('text-yellow-500', 'block');
+                formMessage.textContent = 'Submitting...';
+
+                setTimeout(() => {
+                    console.log('Form data:', {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        message: document.getElementById('message').value
+                    });
+                    
+                    formMessage.classList.remove('text-yellow-500');
+                    formMessage.classList.add('text-green-500');
+                    formMessage.textContent = 'Message sent successfully!';
+                    form.reset();
+                }, 2000);
             });
-        });
-
-        // Typewriter effect for the welcome message
-        const welcomeMessage = "Initializing core protocols... Connection established. Welcome, user.";
-        const terminalPromptElement = document.querySelector('.terminal-prompt');
-        let i = 0;
-        let isPromptAdded = false;
-
-        function typeWriter() {
-            if (i < welcomeMessage.length) {
-                if (!isPromptAdded) {
-                    terminalPromptElement.textContent = '$ ';
-                    isPromptAdded = true;
-                }
-                terminalPromptElement.textContent += welcomeMessage.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        }
-        
-        // Disable the typewriter effect for now to avoid the delay on page load
-        // window.onload = typeWriter;
-
+        };
     </script>
 </body>
 </html>
