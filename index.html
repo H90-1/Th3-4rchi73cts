@@ -175,6 +175,15 @@
 </head>
 <body class="animated-background">
 
+    <!-- Background Music Player -->
+    <!-- The audio is set to autoplay and loop automatically -->
+    <audio id="background-music" src="https://github.com/H90-1/Th3-4rchi73cts/music.mp3" autoplay loop></audio>
+    
+    <!-- Mute/Unmute Button -->
+    <div id="mute-button" class="fixed top-8 right-8 z-50 text-slate-400 cursor-pointer transition-colors duration-300 hover:text-purple-400">
+        <i id="mute-icon" class="ph-duotone ph-speaker-high text-3xl"></i>
+    </div>
+
     <!-- Header & Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-sm shadow-md py-4">
         <nav class="container mx-auto flex justify-center space-x-4 md:space-x-8">
@@ -430,6 +439,23 @@
                     bar.style.width = `${skillLevel}%`;
                 });
             };
+
+            // Audio and Mute button functionality
+            const audio = document.getElementById('background-music');
+            const muteIcon = document.getElementById('mute-icon');
+
+            muteIcon.parentElement.addEventListener('click', () => {
+                if (audio.muted) {
+                    audio.muted = false;
+                    muteIcon.classList.remove('ph-speaker-slash');
+                    muteIcon.classList.add('ph-speaker-high');
+                } else {
+                    audio.muted = true;
+                    muteIcon.classList.remove('ph-speaker-high');
+                    muteIcon.classList.add('ph-speaker-slash');
+                }
+            });
+
 
             // Animate the bars when the page loads
             animateSkillBars();
