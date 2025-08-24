@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons for a modern look -->
@@ -22,10 +23,10 @@
             overflow-x: hidden;
         }
 
-        /* The main green color for the theme */
-        .color-green { color: #00FF00; }
-        .bg-green { background-color: #00FF00; }
-        .border-green { border-color: #00FF00; }
+        /* The main purple color for the theme */
+        .color-purple { color: #A855F7; }
+        .bg-purple { background-color: #A855F7; }
+        .border-purple { border-color: #A855F7; }
 
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -33,7 +34,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #00FF00;
+            background: #A855F7;
             border-radius: 4px;
         }
 
@@ -41,8 +42,7 @@
         .typing-animation {
             overflow: hidden; /* Hide the content until typed */
             white-space: nowrap; /* Prevent line breaks */
-            width: 0; /* Start with no width */
-            animation: typing 2.5s steps(25, end) forwards;
+            border-right: 4px solid #A855F7;
         }
 
         .blink-caret {
@@ -54,9 +54,14 @@
             to { width: 100% }
         }
 
+        @keyframes un-typing {
+            from { width: 100% }
+            to { width: 0 }
+        }
+        
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #00FF00; }
+            50% { border-color: #A855F7; }
         }
 
         /* Animation for the skill bars to 'fill up' */
@@ -88,11 +93,11 @@
             @apply flex items-center space-x-1 px-4 py-2 rounded-lg text-slate-400 font-semibold relative overflow-hidden;
             transition: transform 0.3s ease, color 0.3s ease;
             border: 1px solid transparent;
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+            text-shadow: 0 0 5px rgba(168, 85, 247, 0.2);
         }
 
         .nav-button:hover {
-            color: #00FF00;
+            color: #A855F7;
             transform: scale(1.1);
             animation: flicker 1s linear infinite;
         }
@@ -104,7 +109,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
@@ -124,25 +129,25 @@
         
         /* Card Animations (removed hover box-shadow and flicker animation) */
         .card {
-            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300;
+            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300;
         }
         
         .card:hover {
-            transform: scale(1.05);
+            /* Removed transform scale */
         }
 
         .shadow-inner-glow {
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.2);
         }
         
         /* Contact Button Animation */
         .button-glow {
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5), 0 0 20px rgba(168, 85, 247, 0.3);
             transition: all 0.3s ease;
         }
         
         .button-glow:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.7), 0 0 30px rgba(168, 85, 247, 0.5);
             transform: scale(1.05);
         }
         
@@ -154,8 +159,8 @@
         .font-orbitron {
             font-family: 'Orbitron', sans-serif;
         }
-        .matrix-green {
-            color: #00FF41; /* A brighter, more matrix-like green */
+        .matrix-purple {
+            color: #A855F7; /* A brighter, more matrix-like purple */
         }
         .terminal-muted {
             color: #888;
@@ -163,8 +168,8 @@
         .cyber-cyan {
             color: #00FFFF;
         }
-        .bg-matrix-green\/20 {
-            background-color: rgba(0, 255, 65, 0.2);
+        .bg-matrix-purple\/20 {
+            background-color: rgba(168, 85, 247, 0.2);
         }
     </style>
 </head>
@@ -197,8 +202,9 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-screen flex items-center justify-center text-center">
             <div>
-                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold color-green pr-2 border-r-4 border-green blink-caret">
-                    <span class="typing-animation">$ Th3 4rchi73cts</span>
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold color-purple">
+                    <span id="typing-text" class="typing-animation"></span>
+                    <span id="cursor" class="blink-caret"></span>
                 </h1>
                 <p class="mt-4 text-sm md:text-lg text-slate-400">
                     root@morocco:~# Building digital fortresses, one byte at a time.
@@ -208,8 +214,8 @@
 
         <!-- About Section -->
         <section id="about" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
                     <i class="ph-duotone ph-info-circle text-3xl mr-2"></i> About Us
                 </h2>
                 <p class="text-lg text-slate-300">
@@ -220,17 +226,17 @@
 
         <!-- Team Members Section -->
         <section id="team" class="my-24">
-            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-10 color-green flex items-center justify-center">
+            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-10 color-purple flex items-center justify-center">
                 <i class="ph-duotone ph-users text-3xl mr-2"></i> Our Experts
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <!-- h1_w3rm Card -->
                 <div class="card">
-                    <div class="p-4 rounded-full border border-green/50 mb-4 shadow-inner-glow">
-                        <i class="ph-duotone ph-spider text-4xl text-green-400"></i>
+                    <div class="p-4 rounded-full border border-purple-500/50 mb-4 shadow-inner-glow">
+                        <i class="ph-duotone ph-spider text-4xl text-purple-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-green-400">h1_w3rm</h3>
+                    <h3 class="text-2xl font-bold text-purple-400">h1_w3rm</h3>
                     <p class="text-slate-400 mb-6">Master of Exploitation & Disassembly</p>
 
                     <!-- Skills Bar Container -->
@@ -238,14 +244,14 @@
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-web-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
+                                <div id="skill-web-h1" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="95"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-wrench text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-re-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="90"></div>
+                                <div id="skill-re-h1" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="90"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Reverse Engineering</span>
                         </div>
@@ -254,10 +260,10 @@
 
                 <!-- dracua Card -->
                 <div class="card">
-                    <div class="p-4 rounded-full border border-green/50 mb-4 shadow-inner-glow">
-                        <i class="ph-duotone ph-magnifying-glass text-4xl text-green-400"></i>
+                    <div class="p-4 rounded-full border border-purple-500/50 mb-4 shadow-inner-glow">
+                        <i class="ph-duotone ph-magnifying-glass text-4xl text-purple-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-green-400">dracua</h3>
+                    <h3 class="text-2xl font-bold text-purple-400">dracula</h3>
                     <p class="text-slate-400 mb-6">Forensic Specialist & Web Hacker</p>
 
                     <!-- Skills Bar Container -->
@@ -265,14 +271,14 @@
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-web-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
+                                <div id="skill-web-dracua" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="95"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-hard-drive text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-forensics-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="85"></div>
+                                <div id="skill-forensics-dracua" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="85"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Forensics</span>
                         </div>
@@ -283,15 +289,15 @@
 
         <!-- Competitions Section -->
         <section id="competitions" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
                     <i class="ph-duotone ph-trophy text-3xl mr-2"></i> Competitions
                 </h2>
                 <!-- New competition entry -->
                 <div class="p-6">
                     <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
                         <div class="flex-1">
-                            <h3 class="font-orbitron text-xl font-bold mb-2 matrix-green">BrunnerCTF 2025</h3>
+                            <h3 class="font-orbitron text-xl font-bold mb-2 matrix-purple">BrunnerCTF 2025</h3>
                             <div class="flex flex-wrap gap-4 text-sm terminal-muted">
                                 <span class="flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy cyber-cyan mr-1 h-4 w-4">
@@ -320,7 +326,7 @@
                             </div>
                         </div>
                         <div class="mt-4 md:mt-0">
-                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-matrix-green/20 text-matrix-green">
+                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-matrix-purple/20 text-matrix-purple">
                                 COMPLETED
                             </div>
                         </div>
@@ -331,8 +337,8 @@
 
         <!-- Placeholder Sections -->
         <section id="writeups" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
                     <i class="ph-duotone ph-file-code text-3xl mr-2"></i> Writeups
                 </h2>
                 <p class="text-lg text-slate-400">
@@ -343,8 +349,8 @@
 
         <!-- Stats Section -->
         <section id="stats" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
                     <i class="ph-duotone ph-chart-line text-3xl mr-2"></i> Stats
                 </h2>
                 <p class="text-lg text-slate-400">
@@ -355,22 +361,22 @@
 
         <!-- Contact Form Section -->
         <section id="contact" class="my-24">
-            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8 color-green">Contact Us</h2>
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm max-w-lg mx-auto">
+            <h2 class="text-2xl md:text-3xl font-semibold text-center mb-8 color-purple">Contact Us</h2>
+            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm max-w-lg mx-auto">
                 <form id="contact-form" class="space-y-6">
                     <div>
                         <label for="name" class="block text-slate-300 font-medium mb-1">Your Name</label>
-                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400">
+                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-lg bg-slate-900 border border-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 text-purple-400">
                     </div>
                     <div>
                         <label for="email" class="block text-slate-300 font-medium mb-1">Your Email</label>
-                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400">
+                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-lg bg-slate-900 border border-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 text-purple-400">
                     </div>
                     <div>
                         <label for="message" class="block text-slate-300 font-medium mb-1">Message</label>
-                        <textarea id="message" name="message" rows="4" required class="w-full p-3 rounded-lg bg-slate-900 border border-green/50 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300 text-green-400"></textarea>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 rounded-lg bg-slate-900 border border-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 text-purple-400"></textarea>
                     </div>
-                    <button type="submit" class="button-glow w-full px-6 py-3 bg-green text-black font-bold rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black">
+                    <button type="submit" class="button-glow w-full px-6 py-3 bg-purple text-black font-bold rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-black">
                         Send Message
                     </button>
                     <div id="form-message" class="mt-4 text-center hidden"></div>
@@ -389,6 +395,33 @@
     <script>
         // All custom JavaScript moved here for better organization
         window.onload = () => {
+            const typingTextElement = document.getElementById('typing-text');
+            const textToType = "$ Th3 4rchi73cts";
+            const speed = 150; // milliseconds
+            const eraseSpeed = 100; // milliseconds
+            const pauseTime = 1000; // milliseconds
+            let isDeleting = false;
+            let i = 0;
+
+            const typeWriter = () => {
+                const currentText = textToType.substring(0, i);
+                typingTextElement.textContent = currentText;
+
+                if (!isDeleting && i < textToType.length) {
+                    i++;
+                    setTimeout(typeWriter, speed);
+                } else if (isDeleting && i > 0) {
+                    i--;
+                    setTimeout(typeWriter, eraseSpeed);
+                } else if (i === textToType.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, pauseTime);
+                } else if (i === 0) {
+                    isDeleting = false;
+                    setTimeout(typeWriter, pauseTime);
+                }
+            };
+            
             // Function to animate the skill bars
             const animateSkillBars = () => {
                 const skillBars = document.querySelectorAll('.skill-bar-inner');
@@ -400,6 +433,7 @@
 
             // Animate the bars when the page loads
             animateSkillBars();
+            typeWriter();
 
             // Handle contact form submission
             const form = document.getElementById('contact-form');
@@ -408,7 +442,7 @@
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                formMessage.classList.remove('hidden', 'text-green-500', 'text-red-500');
+                formMessage.classList.remove('hidden', 'text-purple-500', 'text-red-500');
                 formMessage.classList.add('text-yellow-500', 'block');
                 formMessage.textContent = 'Submitting...';
 
@@ -420,7 +454,7 @@
                     });
                     
                     formMessage.classList.remove('text-yellow-500');
-                    formMessage.classList.add('text-green-500');
+                    formMessage.classList.add('text-purple-500');
                     formMessage.textContent = 'Message sent successfully!';
                     form.reset();
                 }, 2000);
