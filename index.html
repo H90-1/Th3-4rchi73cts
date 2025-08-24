@@ -83,7 +83,7 @@
         .animated-background {
             background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
             background-size: 20px 20px;
-            animation: moving-grid 45s linear infinite; /* Increased speed for more noticeable movement */
+            animation: moving-grid 45s linear infinite;
         }
         
         /* New and updated styles for components with animations */
@@ -171,19 +171,15 @@
         .bg-matrix-purple\/20 {
             background-color: rgba(168, 85, 247, 0.2);
         }
+        .writeup-item {
+            @apply p-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover:bg-slate-800/50;
+        }
+        .stat-card {
+            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm transition-transform duration-300 transform hover:scale-[1.02];
+        }
     </style>
 </head>
 <body class="animated-background">
-
-    <!-- Background Music Player -->
-    <!-- The audio is set to autoplay and loop automatically -->
-    <audio id="background-music" src="https://raw.githubusercontent.com/H90-1/Th3-4rchi73cts/main/music.mp3" autoplay loop></audio>
-    
-    <!-- Mute/Unmute Button -->
-    <div id="mute-button" class="fixed top-8 right-8 z-50 text-slate-400 cursor-pointer transition-colors duration-300 hover:text-purple-400">
-        <i id="mute-icon" class="ph-duotone ph-speaker-high text-3xl"></i>
-    </div>
-
     <!-- Header & Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-[#050505]/90 backdrop-blur-sm shadow-md py-4">
         <nav class="container mx-auto flex justify-center space-x-4 md:space-x-8">
@@ -238,7 +234,7 @@
             <h2 class="text-2xl md:text-3xl font-semibold text-center mb-10 color-purple flex items-center justify-center">
                 <i class="ph-duotone ph-users text-3xl mr-2"></i> Our Experts
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
                 <!-- h1_w3rm Card -->
                 <div class="card">
@@ -246,7 +242,7 @@
                         <i class="ph-duotone ph-spider text-4xl text-purple-400"></i>
                     </div>
                     <h3 class="text-2xl font-bold text-purple-400">h1_w3rm</h3>
-                    <p class="text-slate-400 mb-6">Master of Exploitation & Disassembly</p>
+                    <p class="text-slate-400 mb-6">Cybersecurity enthusiast | CTF Player</p>
 
                     <!-- Skills Bar Container -->
                     <div class="w-full space-y-4">
@@ -267,32 +263,60 @@
                     </div>
                 </div>
 
-                <!-- dracua Card -->
+                <!-- Dracula Card -->
                 <div class="card">
                     <div class="p-4 rounded-full border border-purple-500/50 mb-4 shadow-inner-glow">
                         <i class="ph-duotone ph-magnifying-glass text-4xl text-purple-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-purple-400">dracula</h3>
-                    <p class="text-slate-400 mb-6">Forensic Specialist & Web Hacker</p>
+                    <h3 class="text-2xl font-bold text-purple-400">Dracula</h3>
+                    <p class="text-slate-400 mb-6">Cybersecurity Student | Web App Exploitation - OSINT - Forensics</p>
 
                     <!-- Skills Bar Container -->
                     <div class="w-full space-y-4">
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-web-dracua" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="95"></div>
+                                <div id="skill-web-dracula" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="95"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-hard-drive text-xl text-slate-400"></i>
                             <div class="w-64 bg-slate-800 rounded-full h-2">
-                                <div id="skill-forensics-dracua" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="85"></div>
+                                <div id="skill-forensics-dracula" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="85"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Forensics</span>
                         </div>
                     </div>
                 </div>
+
+                <!-- Azvanzed Card (NEW) -->
+                <div class="card md:col-span-2 lg:col-span-1 mx-auto">
+                    <div class="p-4 rounded-full border border-purple-500/50 mb-4 shadow-inner-glow">
+                        <i class="ph-duotone ph-terminal-window text-4xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-purple-400">Azvanzed</h3>
+                    <p class="text-slate-400 mb-6">CTF PLAYER - Pwn Wizard | Rev Expert</p>
+
+                    <!-- Skills Bar Container -->
+                    <div class="w-full space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-code text-xl text-slate-400"></i>
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
+                                <div id="skill-pwn-azvanzed" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="95"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Binary Exploitation</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="ph-duotone ph-wrench text-xl text-slate-400"></i>
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
+                                <div id="skill-re-azvanzed" class="skill-bar-inner bg-gradient-to-r from-purple-400 to-fuchsia-500 rounded-full h-2" data-skill="90"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-400">Reverse Engineering</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -344,27 +368,66 @@
             </div>
         </section>
 
-        <!-- Placeholder Sections -->
+        <!-- Writeups Section (REVAMPED) -->
         <section id="writeups" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
-                    <i class="ph-duotone ph-file-code text-3xl mr-2"></i> Writeups
-                </h2>
-                <p class="text-lg text-slate-400">
-                    Check back here for our detailed writeups on challenges and vulnerabilities we've solved.
-                </p>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-8 color-purple flex items-center justify-center text-center">
+                <i class="ph-duotone ph-file-code text-3xl mr-2"></i> Latest Writeups
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Writeup Card 1 -->
+                <div class="bg-black/50 p-6 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm writeup-item">
+                    <h3 class="font-orbitron text-xl text-purple-400 mb-2">Unlocking the Digital Vault: A Pwn Challenge</h3>
+                    <p class="text-sm text-slate-400 mb-4">A step-by-step guide to solving a complex binary exploitation problem.</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#Pwn</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#Binary</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">2 days ago</span>
+                    </div>
+                </div>
+                <!-- Writeup Card 2 -->
+                <div class="bg-black/50 p-6 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm writeup-item">
+                    <h3 class="font-orbitron text-xl text-purple-400 mb-2">Web Hacking 101: SQL Injection</h3>
+                    <p class="text-sm text-slate-400 mb-4">Dissecting a classic vulnerability and how to exploit it safely.</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#Web</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#SQLi</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">1 week ago</span>
+                    </div>
+                </div>
+                <!-- Writeup Card 3 -->
+                <div class="bg-black/50 p-6 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm writeup-item">
+                    <h3 class="font-orbitron text-xl text-purple-400 mb-2">Forensics in the Cloud: Finding the Flag</h3>
+                    <p class="text-sm text-slate-400 mb-4">Our methodology for analyzing a compromised virtual machine image.</p>
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#Forensics</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">#OSINT</span>
+                        <span class="px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">1 month ago</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Stats Section -->
+        <!-- Stats Section (REVAMPED) -->
         <section id="stats" class="my-24">
-            <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-purple-500/50 backdrop-blur-sm">
-                <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-purple flex items-center">
-                    <i class="ph-duotone ph-chart-line text-3xl mr-2"></i> Stats
-                </h2>
-                <p class="text-lg text-slate-400">
-                    Our performance metrics and rankings will be displayed here.
-                </p>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-8 color-purple flex items-center justify-center text-center">
+                <i class="ph-duotone ph-chart-line text-3xl mr-2"></i> Our Stats
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <!-- Stat Card 1 -->
+                <div class="stat-card">
+                    <div class="text-5xl font-bold color-purple font-orbitron">72</div>
+                    <p class="text-sm text-slate-400 mt-2">Solved Challenges</p>
+                </div>
+                <!-- Stat Card 2 -->
+                <div class="stat-card">
+                    <div class="text-5xl font-bold color-purple font-orbitron">2</div>
+                    <p class="text-sm text-slate-400 mt-2">Team Members</p>
+                </div>
+                <!-- Stat Card 3 -->
+                <div class="stat-card">
+                    <div class="text-5xl font-bold color-purple font-orbitron">8</div>
+                    <p class="text-sm text-slate-400 mt-2">Competitions Joined</p>
+                </div>
             </div>
         </section>
 
@@ -439,23 +502,6 @@
                     bar.style.width = `${skillLevel}%`;
                 });
             };
-
-            // Audio and Mute button functionality
-            const audio = document.getElementById('background-music');
-            const muteIcon = document.getElementById('mute-icon');
-
-            muteIcon.parentElement.addEventListener('click', () => {
-                if (audio.muted) {
-                    audio.muted = false;
-                    muteIcon.classList.remove('ph-speaker-slash');
-                    muteIcon.classList.add('ph-speaker-high');
-                } else {
-                    audio.muted = true;
-                    muteIcon.classList.remove('ph-speaker-high');
-                    muteIcon.classList.add('ph-speaker-slash');
-                }
-            });
-
 
             // Animate the bars when the page loads
             animateSkillBars();
