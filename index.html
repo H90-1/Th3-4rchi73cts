@@ -122,20 +122,13 @@
             30% { opacity: 1; }
         }
         
-        /* Card Animations */
+        /* Card Animations (removed hover box-shadow and flicker animation) */
         .card {
             @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300;
         }
         
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5), 0 0 30px rgba(0, 255, 0, 0.3);
-            animation: subtle-flicker 2s infinite;
-        }
-        
-        @keyframes subtle-flicker {
-            0%, 100% { border-color: rgba(0, 255, 0, 0.5); }
-            50% { border-color: rgba(0, 255, 0, 0.7); }
         }
 
         .shadow-inner-glow {
@@ -155,6 +148,23 @@
         
         .button-glow:active {
             transform: scale(0.95);
+        }
+
+        /* Additional custom styles for new content */
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .matrix-green {
+            color: #00FF41; /* A brighter, more matrix-like green */
+        }
+        .terminal-muted {
+            color: #888;
+        }
+        .cyber-cyan {
+            color: #00FFFF;
+        }
+        .bg-matrix-green\/20 {
+            background-color: rgba(0, 255, 65, 0.2);
         }
     </style>
 </head>
@@ -271,18 +281,55 @@
             </div>
         </section>
 
-        <!-- Placeholder Sections -->
+        <!-- Competitions Section -->
         <section id="competitions" class="my-24">
             <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
                 <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
                     <i class="ph-duotone ph-trophy text-3xl mr-2"></i> Competitions
                 </h2>
-                <p class="text-lg text-slate-400">
-                    This section will be updated with our team's past and upcoming competitions.
-                </p>
+                <!-- New competition entry -->
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                        <div class="flex-1">
+                            <h3 class="font-orbitron text-xl font-bold mb-2 matrix-green">BrunnerCTF 2025</h3>
+                            <div class="flex flex-wrap gap-4 text-sm terminal-muted">
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy cyber-cyan mr-1 h-4 w-4">
+                                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                                        <path d="M4 22h16"></path>
+                                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                                    </svg>
+                                    Rank: #91
+                                </span>
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star cyber-cyan mr-1 h-4 w-4">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                    Points: 3429
+                                </span>
+                                <span class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up cyber-cyan mr-1 h-4 w-4">
+                                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                        <polyline points="16 7 22 7 22 13"></polyline>
+                                    </svg>
+                                    Rating: +??
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <div class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 bg-matrix-green/20 text-matrix-green">
+                                COMPLETED
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <!-- Placeholder Sections -->
         <section id="writeups" class="my-24">
             <div class="bg-black/50 p-8 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm">
                 <h2 class="text-2xl md:text-3xl font-semibold mb-4 color-green flex items-center">
