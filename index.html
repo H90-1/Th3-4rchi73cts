@@ -12,14 +12,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Phosphor Icons for a modern look -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/dist/phosphor.js"></script>
+
     <style>
+        /* All custom CSS moved here for better organization */
         body {
             font-family: 'Fira Code', monospace;
             background-color: #050505; /* Deep black */
             color: #E0E0E0; /* Soft gray text */
             overflow-x: hidden;
         }
-        
+
         /* The main green color for the theme */
         .color-green { color: #00FF00; }
         .bg-green { background-color: #00FF00; }
@@ -34,7 +36,7 @@
             background: #00FF00;
             border-radius: 4px;
         }
-        
+
         /* Keyframe animations for typing and blinking cursor effects */
         .typing-animation {
             overflow: hidden; /* Hide the content until typed */
@@ -76,7 +78,26 @@
         .animated-background {
             background-image: linear-gradient(#1a1a1a 1px, transparent 1px), linear-gradient(90deg, #1a1a1a 1px, transparent 1px);
             background-size: 20px 20px;
-            animation: moving-grid 120s linear infinite;
+            animation: moving-grid 45s linear infinite; /* Increased speed for more noticeable movement */
+        }
+
+        /* Custom styles for components */
+        .nav-button {
+            @apply flex items-center space-x-1 px-4 py-2 rounded-lg text-slate-400 font-semibold transition-all duration-300 transform hover:scale-110 hover:text-green-400 hover:shadow-lg;
+            border: 1px solid transparent;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+        }
+        .card {
+            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+        }
+        .shadow-inner-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .button-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .button-glow:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5);
         }
     </style>
 </head>
@@ -109,8 +130,8 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-screen flex items-center justify-center text-center">
             <div>
-                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold color-green typing-animation pr-2 border-r-4 border-green blink-caret">
-                    $ Th3 4rchi73cts
+                <h1 class="text-3xl md:text-5xl lg:text-7xl font-bold color-green pr-2 border-r-4 border-green blink-caret">
+                    <span class="typing-animation">$ Th3 4rchi73cts</span>
                 </h1>
                 <p class="mt-4 text-sm md:text-lg text-slate-400">
                     root@morocco:~# Building digital fortresses, one byte at a time.
@@ -149,14 +170,14 @@
                     <div class="w-full space-y-4">
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
-                            <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
                                 <div id="skill-web-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-wrench text-xl text-slate-400"></i>
-                            <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
                                 <div id="skill-re-h1" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="90"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Reverse Engineering</span>
@@ -169,21 +190,21 @@
                     <div class="p-4 rounded-full border border-green/50 mb-4 shadow-inner-glow">
                         <i class="ph-duotone ph-magnifying-glass text-4xl text-green-400"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-green-400">dracula</h3>
+                    <h3 class="text-2xl font-bold text-green-400">dracua</h3>
                     <p class="text-slate-400 mb-6">Forensic Specialist & Web Hacker</p>
 
                     <!-- Skills Bar Container -->
                     <div class="w-full space-y-4">
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-globe text-xl text-slate-400"></i>
-                            <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
                                 <div id="skill-web-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="95"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Web App Exploitation</span>
                         </div>
                         <div class="flex items-center space-x-2">
                             <i class="ph-duotone ph-hard-drive text-xl text-slate-400"></i>
-                            <div class="w-full bg-slate-800 rounded-full h-2">
+                            <div class="w-64 bg-slate-800 rounded-full h-2">
                                 <div id="skill-forensics-dracua" class="skill-bar-inner bg-gradient-to-r from-green-400 to-cyan-500 rounded-full h-2" data-skill="85"></div>
                             </div>
                             <span class="text-xs font-medium text-slate-400">Forensics</span>
@@ -260,27 +281,8 @@
 
     </div>
 
-    <style>
-        .nav-button {
-            @apply flex items-center space-x-1 px-4 py-2 rounded-lg text-slate-400 font-semibold transition-all duration-300 transform hover:scale-110 hover:text-green-400 hover:shadow-lg;
-            border: 1px solid transparent;
-            text-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
-        }
-        .card {
-            @apply bg-black/50 p-6 rounded-xl shadow-lg border-2 border-green/50 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl;
-        }
-        .shadow-inner-glow {
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0, 255, 0, 0.2);
-        }
-        .button-glow {
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.3);
-        }
-        .button-glow:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7), 0 0 30px rgba(0, 255, 0, 0.5);
-        }
-    </style>
-
     <script>
+        // All custom JavaScript moved here for better organization
         window.onload = () => {
             // Function to animate the skill bars
             const animateSkillBars = () => {
